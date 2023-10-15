@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ColorMaker</string>
+    <string name="blue">Blue</string>
+    <string name="green">Green</string>
+    <string name="red">Red</string>
+    <string name="reset">Reset</string>
+</resources>
