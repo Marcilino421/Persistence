@@ -27,7 +27,9 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/redSeekBar"
         app:layout_constraintStart_toStartOf="@+id/redSeekBar"
-        app:layout_constraintTop_toBottomOf="@+id/redSeekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/redSeekBar"
+        tools:ignore="VisualLintTextFieldSize,DuplicateSpeakableTextCheck"
+        android:autofillHints="" />
 
     <Switch
         android:id="@+id/redSwitch"
@@ -36,9 +38,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:minHeight="48dp"
-        android:text="R"
+        android:text="@string/R"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <SeekBar
         android:id="@+id/greenSeekBar"
@@ -60,7 +63,9 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/greenSeekBar"
         app:layout_constraintStart_toStartOf="@+id/greenSeekBar"
-        app:layout_constraintTop_toBottomOf="@+id/greenSeekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/greenSeekBar"
+        tools:ignore="VisualLintTextFieldSize"
+        android:autofillHints="" />
 
     <Switch
         android:id="@+id/greenSwitch"
@@ -69,9 +74,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:minHeight="48dp"
-        android:text="G"
+        android:text="@string/G"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/redValue" />
+        app:layout_constraintTop_toBottomOf="@+id/redValue"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <SeekBar
         android:id="@+id/blueSeekBar"
@@ -93,7 +99,9 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/blueSeekBar"
         app:layout_constraintStart_toStartOf="@+id/blueSeekBar"
-        app:layout_constraintTop_toBottomOf="@+id/blueSeekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/blueSeekBar"
+        tools:ignore="VisualLintTextFieldSize"
+        android:autofillHints="" />
 
     <Switch
         android:id="@+id/blueSwitch"
@@ -102,16 +110,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:minHeight="48dp"
-        android:text="B"
+        android:text="@string/B"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greenValue" />
+        app:layout_constraintTop_toBottomOf="@+id/greenValue"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button
         android:id="@+id/resetButton"
         android:layout_width="114dp"
         android:layout_height="64dp"
         android:layout_marginTop="4dp"
-        android:text="Reset"
+        android:text="@string/RESET"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintStart_toStartOf="parent"

@@ -4,4 +4,12 @@
     <string name="green">Green</string>
     <string name="red">Red</string>
     <string name="reset">Reset</string>
+    <string name="g">G</string>
+    <string name="b">B</string>
+    <string name="r">R</string>
+    <string name="Reset">Reset</string>
+    <string name="R">R</string>
+    <string name="G">G</string>
+    <string name="B">B</string>
+    <string name="RESET">Reset</string>
 </resources>

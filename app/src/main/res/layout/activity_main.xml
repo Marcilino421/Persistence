@@ -20,13 +20,17 @@
         android:id="@+id/redValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="@string/app_name"
         android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
         app:layout_constraintEnd_toEndOf="@+id/redSeekBar"
         app:layout_constraintStart_toStartOf="@+id/redSeekBar"
         app:layout_constraintTop_toBottomOf="@+id/redSeekBar"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp" />
+        tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize"
+        android:autofillHints="" />
 
     <Switch
         android:id="@+id/redSwitch"
@@ -34,9 +38,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="R"
+        android:minHeight="48dp"
+        android:text="@string/r"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <SeekBar
         android:id="@+id/greenSeekBar"
@@ -51,13 +57,17 @@
         android:id="@+id/greenValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints=""
         android:hint="@string/app_name"
         android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
         app:layout_constraintEnd_toEndOf="@+id/greenSeekBar"
         app:layout_constraintStart_toStartOf="@+id/greenSeekBar"
         app:layout_constraintTop_toBottomOf="@+id/greenSeekBar"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp" />
+        tools:ignore="VisualLintTextFieldSize" />
 
     <Switch
         android:id="@+id/greenSwitch"
@@ -65,9 +75,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="G"
+        android:minHeight="48dp"
+        android:text="@string/g"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/redValue" />
+        app:layout_constraintTop_toBottomOf="@+id/redValue"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <SeekBar
         android:id="@+id/blueSeekBar"
@@ -82,13 +94,17 @@
         android:id="@+id/blueValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints=""
         android:hint="@string/app_name"
         android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
         app:layout_constraintEnd_toEndOf="@+id/blueSeekBar"
         app:layout_constraintStart_toStartOf="@+id/blueSeekBar"
         app:layout_constraintTop_toBottomOf="@+id/blueSeekBar"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp" />
+        tools:ignore="VisualLintTextFieldSize" />
 
     <Switch
         android:id="@+id/blueSwitch"
@@ -96,16 +112,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="B"
+        android:minHeight="48dp"
+        android:text="@string/b"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greenValue" />
+        app:layout_constraintTop_toBottomOf="@+id/greenValue"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button
         android:id="@+id/resetButton"
         android:layout_width="103dp"
         android:layout_height="56dp"
         android:layout_marginTop="4dp"
-        android:text="Reset"
+        android:text="@string/Reset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
