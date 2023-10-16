@@ -21,18 +21,18 @@ Features:
 # Instructions for Use - ColorMaker App
 
 This repository can be copied to a local system.
--Launch Android Studio and open the project.
--Create and launch the app on an actual Android smartphone or an emulator.
--You will see the following items when the app launches:
--The current color is shown in the color preview box.
--Red Switch: Turn on or off the red component.
--Green Switch: Turn on or off the green component.
--Blue Switch: Turn on or off the blue component.
--Red Slider: Change the red component's intensity.
--Green Slider: Change the level of the green component's intensity.
--A slider for the blue component's intensity may be found here.
--Red Value: Type in a specified value 0 to 100 for the red component.
--Green number: Enter a specified number between 0 and 100 for the green element.
--Blue Value: Type a specified value 0 to 100 for the blue element.
--Pressing this will return all components to their default settings.
--The sliders, text input areas, and toggle switches may all be used to change the color.
+- Launch Android Studio and open the project.
+- Create and launch the app on an actual Android smartphone or an emulator.
+- You will see the following items when the app launches:
+- The current color is shown in the color preview box.
+- Red Switch: Turn on or off the red component.
+- Green Switch: Turn on or off the green component.
+- Blue Switch: Turn on or off the blue component.
+- Red Slider: Change the red component's intensity.
+- Green Slider: Change the level of the green component's intensity.
+- A slider for the blue component's intensity may be found here.
+- Red Value: Type in a specified value 0 to 100 for the red component.
+- Green number: Enter a specified number between 0 and 100 for the green element.
+- Blue Value: Type a specified value 0 to 100 for the blue element.
+- Pressing this will return all components to their default settings.
+- The sliders, text input areas, and toggle switches may all be used to change the color.
