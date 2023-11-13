@@ -1,4 +1,4 @@
-package edu.fullerton.fz.cs411.prepersistence
+package edu.fullerton.fz.cs411.colormaker
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,6 +14,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import edu.fullerton.fz.cs411.colormaker.R
 import java.util.concurrent.Flow
 import java.util.prefs.Preferences
 
