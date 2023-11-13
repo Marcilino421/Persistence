@@ -1,21 +1,23 @@
-package edu.fullerton.fz.cs411.colormaker
+package edu.fullerton.fz.cs411.prepersistence;
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.Color
-import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.SeekBar
-import android.widget.Switch
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
-import androidx.datastore.preferences.core.floatPreferencesKey
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.Switch;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.addTextChangedListener;
+import androidx.datastore.preferences.core.floatPreferencesKey;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.viewModelScope;
+import kotlinx.coroutines.launch;
 import java.util.concurrent.Flow
-import java.util.prefs.Preferences
+import java.util.prefs.Preferences;
 
 @Suppress("Since15")
 class ColorViewModel(private val colorDataStore: ColorDataStore) : ViewModel() {
@@ -23,9 +25,19 @@ class ColorViewModel(private val colorDataStore: ColorDataStore) : ViewModel() {
     var greenIntensity: Float = 1.0f
     var blueIntensity: Float = 1.0f
 
+    val colorIntensities: Flow<Triple<Float, Float, Float>> = colorDataStore.colorIntensities
+
     fun saveColorIntensities(red: Float, green: Float, blue: Float) {
+        val viewModelScope
+        viewModelScope.launch {
+            colorDataStore.saveColorIntensities(red = red, green = green, blue = blue)
+        }
+    }
 }
+
 class ColorDataStore(context: Context) {
+    private val dataStore = context.createDataStore("color_preferences") // Initialize dataStore
+
     suspend fun saveColorIntensities(red: Float, green: Float, blue: Float) {
         dataStore.edit { preferences ->
             preferences[PreferencesKeys.RED_INTENSITY] = red
@@ -42,10 +54,11 @@ class ColorDataStore(context: Context) {
                 preferences[PreferencesKeys.BLUE_INTENSITY] ?: 1.0f
             )
         }
+
     private object PreferencesKeys {
-        val RED_INTENSITY = floatPreferencesKey("red_intensity")
-        val GREEN_INTENSITY = floatPreferencesKey("green_intensity")
-        val BLUE_INTENSITY = floatPreferencesKey("blue_intensity")
+        val RED_INTENSITY = floatArrayOf("red_intensity")
+        val GREEN_INTENSITY = floatArrayOf("green_intensity")
+        val BLUE_INTENSITY = floatArrayOf("blue_intensity")
     }
 }
 class MainActivity : AppCompatActivity() {
