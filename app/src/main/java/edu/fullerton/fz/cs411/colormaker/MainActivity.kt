@@ -1,4 +1,4 @@
-package edu.fullerton.fz.cs411.colormaker
+package edu.fullerton.fz.cs411.prepersistence
 
 import android.annotation.SuppressLint
 import android.content.Context
