@@ -1,6 +1,7 @@
 package edu.fullerton.fz.cs411.colormaker
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -10,7 +11,49 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import androidx.datastore.preferences.core.floatPreferencesKey
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import java.util.concurrent.Flow
+import java.util.prefs.Preferences
 
+@Suppress("Since15")
+class ColorViewModel(private val colorDataStore: ColorDataStore) : ViewModel() {
+    var redIntensity: Float = 1.0f
+    var greenIntensity: Float = 1.0f
+    var blueIntensity: Float = 1.0f
+
+    val colorIntensities: Flow<Triple<Float, Float, Float>> = colorDataStore.colorIntensities
+
+    fun saveColorIntensities(red: Float, green: Float, blue: Float) {
+        viewModelScope.launch {
+            colorDataStore.saveColorIntensities(red = red, green = green, blue = blue)
+        }
+    }
+}
+class ColorDataStore(context: Context) {
+    suspend fun saveColorIntensities(red: Float, green: Float, blue: Float) {
+        dataStore.edit { preferences ->
+            preferences[PreferencesKeys.RED_INTENSITY] = red
+            preferences[PreferencesKeys.GREEN_INTENSITY] = green
+            preferences[PreferencesKeys.BLUE_INTENSITY] = blue
+        }
+    }
+
+    val colorIntensities: Flow<Triple<Float, Float, Float>> = dataStore.data
+        .map { preferences ->
+            Triple(
+                preferences[PreferencesKeys.RED_INTENSITY] ?: 1.0f,
+                preferences[PreferencesKeys.GREEN_INTENSITY] ?: 1.0f,
+                preferences[PreferencesKeys.BLUE_INTENSITY] ?: 1.0f
+            )
+        }
+    private object PreferencesKeys {
+        val RED_INTENSITY = floatPreferencesKey("red_intensity")
+        val GREEN_INTENSITY = floatPreferencesKey("green_intensity")
+        val BLUE_INTENSITY = floatPreferencesKey("blue_intensity")
+    }
+}
 class MainActivity : AppCompatActivity() {
     private lateinit var redSwitch: Switch
     private lateinit var greenSwitch: Switch
@@ -23,6 +66,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var greenValue: TextView
     private lateinit var blueValue: TextView
     private lateinit var colorView: View
+    private lateinit var colorViewModel: ColorViewModel
+    private lateinit var colorDataStore: ColorDataStore
     private var redIntensity: Float = 1.0f
     private var greenIntensity: Float = 1.0f
     private var blueIntensity: Float = 1.0f
@@ -30,7 +75,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        colorDataStore = ColorDataStore(this)
+        colorViewModel = ViewModelProvider(this).get(ColorViewModel::class.java)
         redSwitch = findViewById(R.id.redSwitch)
         greenSwitch = findViewById(R.id.greenSwitch)
         blueSwitch = findViewById(R.id.blueSwitch)
@@ -52,8 +98,22 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.resetButton).setOnClickListener {
             resetValues()
+
         }
-        updateColorView()
+        if (savedInstanceState != null) {
+            colorViewModel.redIntensity = savedInstanceState.getFloat("redIntensity", 1.0f)
+            colorViewModel.greenIntensity = savedInstanceState.getFloat("greenIntensity", 1.0f)
+            colorViewModel.blueIntensity = savedInstanceState.getFloat("blueIntensity", 1.0f)
+            updateColorView()
+        }
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putFloat("redIntensity", colorViewModel.redIntensity)
+        outState.putFloat("greenIntensity", colorViewModel.greenIntensity)
+        outState.putFloat("blueIntensity", colorViewModel.blueIntensity)
     }
 
     private fun setSwitchListener(switch: Switch, seekBar: SeekBar, textView: TextView) {
